@@ -1,6 +1,7 @@
 package com.example.application.zoomdb;
 
-
+import com.example.application.weld.CalcValues;
+import com.example.application.diverse.camvas.GreetingComponent;
 import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.ClientCallable;
 import com.vaadin.flow.component.UI;
@@ -286,7 +287,7 @@ public class MainView extends HorizontalLayout {
             headers.setContentType(MediaType.APPLICATION_XML);
             HttpEntity<String> request = new HttpEntity<>(content, headers);
             RestTemplate restTemplate = new RestTemplate();
-            ResponseEntity<String> response = restTemplate.postForEntity("https://weldit.weldit.no/api/images", request, String.class);
+            ResponseEntity<String> response = restTemplate.postForEntity("https://weldit.weldit.no/api/images/" + CalcValues.userID, request, String.class);
             UI ui = UI.getCurrent();
             if (ui != null) {
                 ui.access(() -> {
