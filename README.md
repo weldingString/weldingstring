@@ -14,7 +14,7 @@ There are many Java classes in this collection which are not yet an integrated p
 Project are based on Java 17.0.2, SpringBoot 3.1,2 , Vaadin Flow 24.6.6 , Maven 4.0.0. As IDE is IntelliJ IDEA 2024.3.4.
 
 The system are based on manipulation of svg-files and will as end product generate a .svg file send to an API in the Weldit system.
-System sending an API to https://weldit.weldit.no/api/images  This URL is given in method sendSvgToApi()
+System sending an API to https://weldit.weldit.no/api/images/userID  This URL is given in method sendSvgToApi()
 in the Java-class MainViewSave.java  
 
 The API have to:
