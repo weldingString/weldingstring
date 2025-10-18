@@ -1,5 +1,6 @@
 package com.example.application.zoomdb;
 
+import com.example.application.weld.CalcValues;
 import com.example.application.diverse.camvas.GreetingComponent;
 import com.example.application.diverse.camvas.Language;
 import com.vaadin.flow.component.AttachEvent;
