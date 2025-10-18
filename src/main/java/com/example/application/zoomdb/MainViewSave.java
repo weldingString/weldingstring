@@ -1,5 +1,5 @@
 package com.example.application.zoomdb;
-
+import com.example.application.weld.CalcValues;
 import com.example.application.diverse.camvas.GreetingComponent;
 import com.example.application.diverse.camvas.Language;
 import com.vaadin.flow.component.AttachEvent;
@@ -22,6 +22,7 @@ import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.sql.SQLOutput;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
@@ -160,7 +161,6 @@ public class MainViewSave extends HorizontalLayout {
                         }
                     """, zoom);
         });
-
 
         zoomButton.getStyle().set("color", "white");
         menu.add(zoomFactor, zoomButton);
@@ -540,7 +540,20 @@ public class MainViewSave extends HorizontalLayout {
             headers.setContentType(MediaType.APPLICATION_XML);
             HttpEntity<String> request = new HttpEntity<>(content, headers);
             RestTemplate restTemplate = new RestTemplate();
-            ResponseEntity<String> response = restTemplate.postForEntity("https://weldit.weldit.no/api/images", request, String.class);
+     //       ResponseEntity<String> response = restTemplate.postForEntity("https://weldit.weldit.no/api/images/" + CalcValues.userID, request, String.class);
+            String tananat = "";
+            String adresse = CalcValues.userID;
+            int finnes = adresse.indexOf("+");
+
+            if(finnes ==-1){
+                tananat  = "weldit";
+            }
+            String first = adresse.substring(0, finnes);
+            String last = adresse.substring(finnes+1);
+      //      System.out.println(first + " " + last);
+            String sender = "https://" + last + ".weldit.no/api/images/" + first;
+       //    System.out.println(sender);
+            ResponseEntity<String> response = restTemplate.postForEntity(sender, request, String.class);
             UI ui = UI.getCurrent();
             if (ui != null) {
                 ui.access(() -> apiResponse.setText("Respons from API: " + response.getStatusCode()));
